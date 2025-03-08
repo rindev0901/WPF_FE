@@ -32,5 +32,12 @@ namespace WPF_FE
 
             monHocWindow.Show();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var dangKyWindow = new DangKyWindow();
+
+            dangKyWindow.Show();
+        }
     }
 }

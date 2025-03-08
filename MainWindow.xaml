@@ -9,6 +9,7 @@
     <StackPanel>
         <Menu>
             <MenuItem Header="Môn Học" Click="MenuItem_Click"/>
+            <MenuItem Header="Đăng Ký Môn Học" Click="MenuItem_Click_1"/>
         </Menu>
     </StackPanel>
 </Window>

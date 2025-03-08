@@ -1,0 +1,69 @@
+﻿<Window x:Class="WPF_FE.UI.DangKyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_FE.UI"
+        mc:Ignorable="d"
+        Title="Đăng ký môn học" Height="450" Width="800" DataContext="{StaticResource rsDangKyMonHocWindowMVVM}">
+    <StackPanel>
+        <Label Content="Quản Lý Đăng Ký Môn Học" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã Số Môn Học" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên Môn Học" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Số Tiết" />
+
+            <ComboBox Grid.Row="0" Grid.Column="2" x:Name="cmbMsmh" ItemsSource="{Binding monhocs}" DisplayMemberPath="Msmh" SelectedValuePath="Msmh" SelectedItem="{Binding monHocSelection}" SelectionChanged="cmbMsmh_SelectionChanged"/>
+            <TextBox Grid.Row="1" Grid.Column="2"  IsReadOnly="True" Text="{Binding ElementName=cmbMsmh, Path=SelectedItem.Tenmh}"/>
+            <TextBox Grid.Row="2" Grid.Column="2"  IsReadOnly="True" Text="{Binding ElementName=cmbMsmh, Path=SelectedItem.Sotiet}"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="4" Text="Mã Số Học Viên" />
+            <TextBlock Grid.Row="1" Grid.Column="4" Text="Họ Tên" />
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="Ngày Sinh" />
+            <TextBlock Grid.Row="3" Grid.Column="4" Text="Phái" />
+
+            <ComboBox Grid.Row="0" Grid.Column="5"  x:Name="cmbMshv" ItemsSource="{Binding hocviens}" DisplayMemberPath="Mshv" SelectedValuePath="Mshv" SelectedItem="{Binding hocVienSelection}"/>
+            <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding ElementName=cmbMshv, Path=SelectedItem.Tenhv}" IsReadOnly="True"/>
+            <TextBox Grid.Row="2" Grid.Column="5"  Text="{Binding ElementName=cmbMshv, Path=SelectedItem.NgaySinhFormat, Mode=OneWay}" IsReadOnly="True"/>
+            <TextBox Grid.Row="3" Grid.Column="5"  Text="{Binding ElementName=cmbMshv, Path=SelectedItem.PhaiFormat,Mode=OneWay}" IsReadOnly="True"/>
+
+            <Button Grid.Row="0" Grid.Column="6" Content="Đăng Ký" Click="Button_Click_1"/>
+        </Grid>
+        <Label Content="Danh sách học viên" Margin="50,0,50,0"/>
+        <DataGrid AutoGenerateColumns="False" Height="250" Margin="50,0,50,0" ItemsSource="{Binding hocviensRegisted}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã Số Học Viên" Width="1*" Binding="{Binding Mshv}"/>
+                <DataGridTextColumn Header="Họ Tên" Width="1*" Binding="{Binding Tenhv}" />
+                <DataGridTextColumn Header="Ngày Sinh" Width="1*" Binding="{Binding NgaySinhFormat}" />
+                <DataGridTextColumn Header="Phái" Width="1*" Binding="{Binding PhaiFormat}" />
+                <DataGridTextColumn Header="Mã Lớp" Width="1*" Binding="{Binding MalopNavigation.Malop}"/>
+                <DataGridTextColumn Header="Tên Lớp" Width="1*"  Binding="{Binding MalopNavigation.Tenlop}"/>
+                <DataGridTemplateColumn Header="Action" Width="1*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Hủy Đăng Ký"
+                                   Click="Button_Click"
+                                    />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>

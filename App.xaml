@@ -6,5 +6,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <controls:MonHocWindowMVVM x:Key="rsMonHocWindowMVVM"/>
+        <controls:DangKyMonHocWindowMVVM x:Key="rsDangKyMonHocWindowMVVM"/>
     </Application.Resources>
 </Application>
